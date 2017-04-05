@@ -82,8 +82,7 @@
 					},
 					"useBatch": false
 				},
-				"dataSource": "ZVIP_PAYMENTTRACK_SRV",
-				"preload": true
+				"dataSource": "ZVIP_PAYMENTTRACK_SRV"
 			}
 		},
 		"resources": {

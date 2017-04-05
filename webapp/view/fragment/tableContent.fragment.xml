@@ -137,9 +137,9 @@
 					<Column id="docDateCol" 
 						minScreenWidth="Tablet" 
 						demandPopin="true"	
-						hAlign="Center"	
-						sortProperty="{docDate}" sorted="true" 
-						>
+						hAlign="Center"	>
+					<!-- FIX AS: Eliminata la proprietà non più supportata di ordinamento -->
+					<!-- sortProperty="{docDate}" sorted="true" -->
 					</Column>
 					<Column id="expireDateCol"
 						minScreenWidth="Tablet" 
