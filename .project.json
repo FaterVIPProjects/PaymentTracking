@@ -1,0 +1,6 @@
+{
+  "deploy": {
+    "destination": "ZVIP",
+    "name": "Z_PAYMENT_TR"
+  }
+}

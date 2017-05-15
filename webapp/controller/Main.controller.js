@@ -25,8 +25,9 @@ sap.ui.define([
 		_handleSuggest: function(oEvent) {
 			var sTerm = oEvent.getParameter("suggestValue");
 			// FIX AS: Quando scrivo un testo, lo devo salvare nella ricerca eventuale in popup
-			if (sTerm)
+			if (sTerm){
 				this._supplierSearch = sTerm;
+			}
 			if (sTerm.length >= 3) {
 				/*
 				var aFilters = []; 
@@ -124,8 +125,9 @@ sap.ui.define([
 				var suppliersToken = oModel.getProperty("/filters/suppliers");
 				var index = 0;
 				for (var i = 0; suppliersToken[i]; i++) {
-					if (suppliersToken[i].supplierId === supplierId)
+					if (suppliersToken[i].supplierId === supplierId){
 						index = i;
+					}
 				}
 
 				var oSupplierInput = this.getView().byId("supplierFilterInput");
