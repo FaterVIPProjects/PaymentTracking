@@ -1,12 +1,12 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
-	"org/fater/app/model/models",
-	"org/fater/app/Router"
+	"org/fater/paymenttracking/model/models",
+	"org/fater/paymenttracking/Router"
 ], function(UIComponent, Device, models) {
 	"use strict";
 
-	return UIComponent.extend("org.fater.app.Component", {
+	return UIComponent.extend("org.fater.paymenttracking.Component", {
 
 		metadata: {
 			manifest: "json"

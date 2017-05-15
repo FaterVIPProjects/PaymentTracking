@@ -1,9 +1,9 @@
 /* eslint no-empty: ["error", { "allowEmptyCatch": true }] */
 jQuery.sap.require("sap.m.routing.RouteMatchedHandler");
 jQuery.sap.require("sap.ui.core.routing.Router");
-jQuery.sap.declare("org.fater.app.MyRouter");
+jQuery.sap.declare("org.fater.paymenttracking.MyRouter");
 
-sap.ui.core.routing.Router.extend("org.fater.app.Router", {
+sap.ui.core.routing.Router.extend("org.fater.paymenttracking.Router", {
 
 	constructor : function() {
 		sap.ui.core.routing.Router.apply(this, arguments);

@@ -1,11 +1,11 @@
 /* eslint no-empty: ["error", { "allowEmptyCatch": true }] */
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"org/fater/app/util/formatter"	
+	"org/fater/paymenttracking/util/formatter"	
 ], function(Controller, formatter) {
 	"use strict";
 	
-	return Controller.extend("org.fater.app.controller.Detail", {
+	return Controller.extend("org.fater.paymenttracking.controller.Detail", {
 
 		formatter: formatter,
 
