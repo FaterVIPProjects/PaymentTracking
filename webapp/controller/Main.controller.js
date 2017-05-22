@@ -25,7 +25,7 @@ sap.ui.define([
 		_handleSuggest: function(oEvent) {
 			var sTerm = oEvent.getParameter("suggestValue");
 			// FIX AS: Quando scrivo un testo, lo devo salvare nella ricerca eventuale in popup
-			if (sTerm){
+			if (sTerm) {
 				this._supplierSearch = sTerm;
 			}
 			if (sTerm.length >= 3) {
@@ -125,7 +125,7 @@ sap.ui.define([
 				var suppliersToken = oModel.getProperty("/filters/suppliers");
 				var index = 0;
 				for (var i = 0; suppliersToken[i]; i++) {
-					if (suppliersToken[i].supplierId === supplierId){
+					if (suppliersToken[i].supplierId === supplierId) {
 						index = i;
 					}
 				}
@@ -170,7 +170,6 @@ sap.ui.define([
 					objListItem
 				);
 			}
-
 			// AS - FIX bug #003: In caso di input vuoto, sbiancare la ricerca
 			var textInput = this.getView().byId("supplierFilterInput");
 			var currentValue = textInput.getValue();
@@ -196,6 +195,7 @@ sap.ui.define([
 		},
 
 		_handleSupplierValueHelpSearch: function(oEvent) {
+			
 			// FIX AS: Valorizzo il SupplierSearch solo se non vuoto 
 			// (potrebbe provenire dall'input del campo fuori popup
 			this._supplierSearch = oEvent.getParameter("value");
@@ -203,10 +203,11 @@ sap.ui.define([
 			if (this._supplierSearch.length >= 3) {
 				var oFilter = [];
 				var filter;
-				if (!isNaN(this._supplierSearch))
+				if (!isNaN(this._supplierSearch)) {
 					filter = new Filter("supplierId", sap.ui.model.FilterOperator.Contains, this._supplierSearch);
-				else
+				} else {
 					filter = new Filter("supplierName", sap.ui.model.FilterOperator.Contains, this._supplierSearch);
+				}
 
 				oFilter = new sap.ui.model.Filter({
 					filters: [
@@ -269,7 +270,6 @@ sap.ui.define([
 
 			// Refresh model so that SAPUI5 refreshes bindings
 			oModel.refresh();
-
 			this._valueHelpDialog.unbindAggregation("items");
 		},
 
@@ -954,30 +954,38 @@ sap.ui.define([
 		},
 
 		_downloadCSVFile: function(sReportTitle, sCSV) {
-			//Generate a file name
 			//this will remove the blank-spaces from the title and replace it with an underscore
-			var sFileName = sReportTitle.replace(/ /g, "_");
+			var sFileName = sReportTitle.replace(/ /g, "_") + ".csv";
+			// Internet Explorer 6-11
+			var isIE = /*@cc_on!@*/ false || !!document.documentMode;
+			if (isIE === true) {
+				var blob = new Blob([sCSV], {
+					type: "text/csv;charset=UTF-8",
+					encoding: "UTF-8"
+				});
+				utils.invokeSaveAsDialog(blob, sFileName);
+			} else {
+				//Initialize file format you want csv or xls
+				var uri = 'data:text/csv;charset=utf-8,' + escape(sCSV);
 
-			//Initialize file format you want csv or xls
-			var uri = 'data:text/csv;charset=utf-8,' + escape(sCSV);
+				// Now the little tricky part.
+				// you can use either>> window.open(uri);
+				// but this will not work in some browsers
+				// or you will not get the correct file extension    
 
-			// Now the little tricky part.
-			// you can use either>> window.open(uri);
-			// but this will not work in some browsers
-			// or you will not get the correct file extension    
+				//this trick will generate a temp <a /> tag
+				var link = document.createElement("a");
+				link.href = uri;
 
-			//this trick will generate a temp <a /> tag
-			var link = document.createElement("a");
-			link.href = uri;
+				//set the visibility hidden so it will not effect on your web-layout
+				//link.style = "visibility:hidden";
+				link.download = sFileName + ".csv";
 
-			//set the visibility hidden so it will not effect on your web-layout
-			link.style = "visibility:hidden";
-			link.download = sFileName + ".csv";
-
-			//this part will append the anchor tag and remove it after automatic click
-			document.body.appendChild(link);
-			link.click();
-			document.body.removeChild(link);
+				//this part will append the anchor tag and remove it after automatic click
+				document.body.appendChild(link);
+				link.click();
+				document.body.removeChild(link);
+			}
 		},
 
 		onExportAllPress: function(oEvent) {

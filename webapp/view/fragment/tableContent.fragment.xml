@@ -85,7 +85,9 @@
 							<cells>
 								<ObjectIdentifier title="{docNumber}" class="sapMTableContentMargin"/>
 								<Text text="{docType}"/>
-								<ObjectNumber number="{ path: 'amount', formatter: '.formatter.amountFormatter' }" unit="{currency}"/>
+								<ObjectNumber number="{ path: 'amount', formatter: '.formatter.amountFormatter' }" unit="{currency}"
+								state="{=${amount}>0 ? 'Success' : 'Error'}"
+								/>
 								<Text text="{ path:'docDate', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTHH:mm:ss' } } }"/>
 								<Text text="{ path:'expireDate', type: 'sap.ui.model.type.Date', formatOptions: { source: { pattern: 'yyyy-MM-ddTHH:mm:ss' } } }"/>
 								<Text text="{pareggioDocNumber}"/>

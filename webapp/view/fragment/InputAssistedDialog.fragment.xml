@@ -4,7 +4,7 @@
 		class="sapUiPopupWithPadding" 
 		noDataText=""
 		growingThreshold="9999999"
-		rememberSelections="true"		
+		rememberSelections="false"		
 		liveChange = "_handleSupplierLiveChangeSearch"
 		multiSelect="true"
 		search="_handleSupplierValueHelpSearch"
