@@ -2,5 +2,12 @@
   "deploy": {
     "destination": "ZVIP",
     "name": "Z_PAYMENT_TR"
+  },
+  "mockpreview": {
+    "mockUri": "/sap/opu/odata/sap/ZVIP_PAYMENTTRACK_SRV/",
+    "metadataFilePath": "localService/ZVIP_PAYMENTTRACK_SRV/metadata.xml",
+    "mockRequestsFilePath": "",
+    "loadJSONFiles": false,
+    "loadCustomRequests": false
   }
 }
