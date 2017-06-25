@@ -195,7 +195,7 @@ sap.ui.define([
 		},
 
 		_handleSupplierValueHelpSearch: function(oEvent) {
-			
+
 			// FIX AS: Valorizzo il SupplierSearch solo se non vuoto 
 			// (potrebbe provenire dall'input del campo fuori popup
 			this._supplierSearch = oEvent.getParameter("value");
@@ -595,6 +595,7 @@ sap.ui.define([
 				filters: aFilters,
 				success: function(oData) {
 					var aInvoices = aSuppliers;
+					var lastCurrency;
 					for (var x = 0; aInvoices[x]; x++) {
 						aInvoices[x].visible = false;
 						aInvoices[x].Invoices = [];
@@ -648,7 +649,9 @@ sap.ui.define([
 					if (oData.results.length > 0) {
 						that.getView().byId("supplierFilterBar").setFilterBarExpanded(false);
 					}
-
+					
+					aInvoices = utils.splitSuppliersForCurrency(aInvoices);         
+					
 					oModel.setProperty(
 						"/invoices",
 						aInvoices
@@ -722,6 +725,7 @@ sap.ui.define([
 			var sortItem = oEvent.getParameter("sortItem").getKey();
 			var aSorters = [];
 			var sOrder = oEvent.getParameter("sortDescending");
+
 			var sorter = new Sorter(sortItem, sOrder);
 			if (sortItem === "amount") {
 				sorter.fnCompare = function(value1, value2) {
